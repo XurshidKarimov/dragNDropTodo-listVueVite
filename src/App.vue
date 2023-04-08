@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-import DragNDropVue from "../../VueViteSandbox/src/components/DragNDrop.vue";
+import DragNDrop from './components/DragNDrop.vue';
 
 
 </script>

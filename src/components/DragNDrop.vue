@@ -1,6 +1,6 @@
 <template>
     <div class="todo-list">
-        <h2>To-Do list</h2>
+        <h2>DragNDrop To-Do list</h2>
         <div class="drop-zone-list">
             <div class="to-do zone">
                 <p>To-do</p>
@@ -47,6 +47,7 @@ export default {
         }
         
         function startDrag(event, item){
+            console.log("qotaq")
             event.target.style.background = "dodgerblue";
             event.dataTransfer.dropEffect = "move";
             event.dataTransfer.effectAllowed = "move";
@@ -87,7 +88,7 @@ export default {
     padding: 15px;
     border-radius: 15px;
     box-shadow: 0 0 2px 2px lightblue;
-    background-color: lightgray;
+    background-color: white;
 }
 
 .drop-zone{
@@ -110,6 +111,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
     width: 100%;
     cursor: pointer;
     padding: 5px;
