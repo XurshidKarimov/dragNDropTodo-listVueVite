@@ -1,12 +1,12 @@
 <template>
     <div class="todo-list">
-        <h2>DragNDrop To-Do list</h2>
+        <h2>DragNDrop Issue list</h2>
         <div class="drop-zone-list">
             <div class="to-do zone">
                 <p>To-do</p>
                 <div class="to-do drop-zone" @dragenter.prevent @dragover.prevent @drop="dropping($event, 1)">
                     <div v-for="item in getItem(1)" :key="item.id" class="drag-element" draggable="true"
-                    @dragstart="startDrag($event, item)">
+                    @dragstart="startDrag($event, item)" :class="changeBG(1)">
                     {{ item.todo }}
                 </div>
             </div>   
@@ -16,21 +16,21 @@
             <p>Checking</p>
             <div class="to-do drop-zone" @dragenter.prevent @dragover.prevent @drop="dropping($event, 2)">
                 <div v-for="item in getItem(2)" :key="item.id" class="drag-element" draggable="true"
-                @dragstart="startDrag($event, item)">
+                @dragstart="startDrag($event, item)" :class="changeBG(2)">
                 {{ item.todo }}
-            </div>
-        </div>   
-    </div>
-    
-    <div class="done zone">
-        <p>Done</p>
-        <div class="to-do drop-zone" @dragenter.prevent @dragover.prevent @drop="dropping($event, 3)">
-            <div v-for="item in getItem(3)" :key="item.id" class="drag-element" draggable="true"
-            @dragstart="startDrag($event, item)">
-            {{ item.todo }}
+                </div>
+            </div>   
         </div>
-    </div>   
-</div>
+    
+        <div class="done zone">
+            <p>Done</p>
+            <div class="to-do drop-zone" @dragenter.prevent @dragover.prevent @drop="dropping($event, 3)">
+                <div v-for="item in getItem(3)" :key="item.id" class="drag-element" draggable="true"
+                @dragstart="startDrag($event, item)" :class="changeBG(3)">
+            {{ item.todo }}
+                </div>
+            </div>   
+        </div>
 </div>
 </div>
 </template>
@@ -62,11 +62,24 @@ export default {
             });
         }
         
+        function changeBG(list){
+            const classMap = new Map(
+                [
+                    [1, 'default-bg'],
+                    [2, 'checking-bg'],
+                    [3, 'done-bg'],
+                ]
+            )
+
+            return classMap.get(list);
+        }
+
         return {
             items,
             getItem,
             startDrag,
             dropping,
+            changeBG,
         }
     }   
 }
@@ -95,7 +108,6 @@ export default {
     flex-direction: column;
     row-gap: 5px;
     min-height: 100px;
-    
 }
 
 .zone{
@@ -115,7 +127,18 @@ export default {
     cursor: pointer;
     padding: 5px;
     border-radius: 5px;
+}
+
+.default-bg{
     background-color: slateblue;
+}
+
+.checking-bg{
+    background-color: goldenrod;
+}
+
+.done-bg{
+    background-color: green;
 }
 
 </style>
