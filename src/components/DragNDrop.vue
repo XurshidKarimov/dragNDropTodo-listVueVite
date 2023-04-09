@@ -47,7 +47,6 @@ export default {
         }
         
         function startDrag(event, item){
-            console.log("qotaq")
             event.target.style.background = "dodgerblue";
             event.dataTransfer.dropEffect = "move";
             event.dataTransfer.effectAllowed = "move";
