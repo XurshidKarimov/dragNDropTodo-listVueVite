@@ -47,7 +47,6 @@ export default {
         }
         
         function startDrag(event, item){
-            event.target.style.background = "dodgerblue";
             event.dataTransfer.dropEffect = "move";
             event.dataTransfer.effectAllowed = "move";
             event.dataTransfer.setData("itemID", item.id);
